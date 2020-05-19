@@ -58,7 +58,7 @@ namespace httpload
 			writer.WriteLine("Max time:        {0} ms", MaxTime.TicksToMs());
 			writer.WriteLine("Avg time:        {0} ms", avg.TicksToMs());
 			writer.WriteLine("Median time:     {0} ms", QuantileSample[QuantileSample.Length >> 1].TicksToMs());
-			writer.WriteLine("Std deviation:   {0}", Math.Sqrt((double)QuantileSample.Sum(time => (time - avg) * (time - avg)) / QuantileSample.Length).TicksToMs().ToStdString(suffix: "ms"));
+			writer.WriteLine("Std deviation:   {0}", Math.Sqrt((double)QuantileSample.Sum(time => (time - avg) * (time - avg)) / (QuantileSample.Length - 1)).TicksToMs().ToStdString(suffix: "ms"));
 			writer.WriteLine();
 			writer.WriteLine("Time taken:      {0}", elapsed.TotalSeconds.ToStdString(suffix: "sec"));
 			writer.WriteLine("Data received:   {0}", TotalBytes.ToSmartString(suffix: "B"));
